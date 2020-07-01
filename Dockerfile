@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get upgrade -Y
+RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y \
     wget \
@@ -10,7 +10,7 @@ RUN apt-get install -y \
     apache2
 
 RUN add-apt-repository -y ppa:ondrej/php
-RUN apt-get update
+RUN apt-get update -y
 RUN apt-get install -y \
     php7.4 php7.4-fpm \
     libapache2-mod-php7.0 \
