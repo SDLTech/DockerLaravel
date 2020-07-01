@@ -8,7 +8,7 @@ RUN apt-get update \
     && docker-php-ext-install gmp \
     && docker-php-ext-enable opcache \
     && docker-php-ext-install zip \
-	&& docker-php-ext-install bcmath \
+    && docker-php-ext-install bcmath \
     && apt-get autoclean -y \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/pear/
