@@ -1,27 +1,33 @@
-FROM php:7.4.7-fpm
+FROM ubuntu:20.04
 
-WORKDIR /var/www
+RUN apt-get update && apt-get upgrade
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    unzip \
+RUN apt-get install -y \
+    wget \
     curl \
-    libzip-dev \
-    libonig-dev
+    zip \
+    unzip \
+    apache2
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl
-RUN docker-php-ext-configure gd
-RUN docker-php-ext-install gd
+RUN add-apt-repository -y ppa:ondrej/php
+RUN apt-get update
+RUN apt-get install -y \
+    php7.4 php7.4-fpm \
+    libapache2-mod-php7.0 \
+    php7.4-cli \
+    php7.4-curl \
+    php7.4-mysql \
+    php7.4-sqlite3 \
+    php7.4-gd \
+    php7.4-xml \
+    php7.4-mcrypt \
+    php7.4-mbstring \
+    php7.4-iconv
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+WORKDIR /var/www/html
+RUN composer create-project --prefer-dist laravel/laravel lara_app
 
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
