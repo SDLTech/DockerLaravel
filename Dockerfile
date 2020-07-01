@@ -2,6 +2,8 @@ FROM ubuntu:20.04
 
 RUN apt-get update && apt-get upgrade -y
 
+ENV TZ=Australia/Brisbane
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
 RUN apt-get install -y \
     wget \
     curl \
