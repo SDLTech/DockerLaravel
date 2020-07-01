@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get upgrade -Y
 
 RUN apt-get install -y \
     wget \
