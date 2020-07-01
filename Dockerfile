@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     jpegoptim optipng pngquant gifsicle \
     unzip \
-    curl
+    curl \
+    libonig-dev
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
