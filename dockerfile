@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:8.0-rc
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libfreetype6-dev libjpeg-dev libpng-dev libwebp-dev  \
