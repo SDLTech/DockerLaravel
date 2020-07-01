@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl \
     libzip-dev \
+    php-pear \
     libonig-dev
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
