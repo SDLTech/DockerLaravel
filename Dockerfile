@@ -5,6 +5,7 @@ RUN apt-get update && apt-get upgrade -y
 ENV TZ=Australia/Brisbane
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
 
@@ -48,6 +49,7 @@ WORKDIR /var/www/html
 #RUN composer install
 
 #COPY apache-conf /etc/apache2/apache2.conf
+COPY 000-default.conf  /etc/apache2/sites-available/000-default.conf
 
 RUN service apache2 start
 
