@@ -46,6 +46,6 @@ RUN composer create-project --prefer-dist laravel/laravel lara_app
 
 #ENTRYPOINT ["/usr/sbin/apache2", "start"]
 
-#EXPOSE 80
+EXPOSE 80
 
-#CMD ["apachectl", "-D", "FOREGROUND"]
+CMD apachectl -D FOREGROUND
