@@ -42,7 +42,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /var/www/html
 RUN composer create-project --prefer-dist laravel/laravel lara_app
 
-ENTRYPOINT ["/usr/sbin/apache2", "-k", "start"]
+#COPY apache-conf /etc/apache2/apache2.conf
+
+ENTRYPOINT ["/usr/sbin/apache2", "-k start"]
 
 EXPOSE 80
 
