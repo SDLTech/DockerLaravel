@@ -34,16 +34,16 @@ RUN apt-get install -y \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN chown -R www:www  /var/www
+#RUN chown -R www:www  /var/www
 
-USER www
+#USER www
 
 WORKDIR /var/www
 
-#RUN composer install
+##RUN composer install
 
-#RUN service nginx start
+##RUN service nginx start
 
 EXPOSE 80
 
-#CMD nginx -D FOREGROUND
+##CMD nginx -D FOREGROUND
