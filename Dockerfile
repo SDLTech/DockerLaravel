@@ -28,7 +28,6 @@ RUN apt-get install -y \
     php-mysql \
     php-gd \
     php-xml \
-    php-mcrypt \
     php-mbstring \
     php-iconv
 
