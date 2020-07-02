@@ -44,8 +44,9 @@ RUN composer create-project --prefer-dist laravel/laravel lara_app
 
 #COPY apache-conf /etc/apache2/apache2.conf
 
-ENTRYPOINT ["/usr/sbin/apache2", "k start"]
+#ENTRYPOINT ["/usr/sbin/apache2", "-k", "start"]
 
 EXPOSE 80
 
-CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
+
+CMD ["apachectl", "-D", "FOREGROUND"]
