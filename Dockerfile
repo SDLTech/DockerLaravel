@@ -3,6 +3,12 @@ FROM ubuntu:20.04
 RUN apt-get update && apt-get upgrade -y
 
 ENV TZ=Australia/Brisbane
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOCK_DIR /var/lock/apache2
+ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
+ENV APACHE_SERVER_NAME localhost
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
 
 RUN apt-get install -y \
@@ -36,14 +42,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /var/www/html
 RUN composer create-project --prefer-dist laravel/laravel lara_app
 
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-
 ENTRYPOINT ["/usr/sbin/apache2", "-k", "start"]
 
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
-ENV APACHE_LOG_DIR /var/log/apache2
-
 EXPOSE 80
-CMD apachectl -D FOREGROUND
+
+CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
