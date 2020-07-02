@@ -5,10 +5,10 @@ RUN apt-get update && apt-get upgrade -y
 ENV TZ=Australia/Brisbane
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
-#ENV APACHE_LOCK_DIR /var/lock/apache2
-#ENV APACHE_LOG_DIR /var/log/apache2
-#ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
-#ENV APACHE_SERVER_NAME localhost
+#ENV APACHE_LOCK_DIR
+#ENV APACHE_LOG_DIR
+#ENV APACHE_PID_FILE
+#ENV APACHE_SERVER_NAME
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
 
 RUN apt-get install -y \
