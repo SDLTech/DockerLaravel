@@ -33,8 +33,8 @@ RUN apt-get install -y \
     php-xml \
     php-mbstring \
     php-iconv \
-    install nodejs \
-    install npm
+    nodejs \
+    npm
 
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
