@@ -4,6 +4,7 @@ RUN apt-get update && apt-get upgrade -y
 
 ENV TZ=Australia/Brisbane
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
+
 RUN apt-get install -y \
     wget \
     curl \
@@ -11,20 +12,25 @@ RUN apt-get install -y \
     unzip \
     apache2
 
-RUN add-apt-repository -y ppa:ondrej/php
 RUN apt-get update -y
+
 RUN apt-get install -y \
-    php7.4 php7.4-fpm \
-    libapache2-mod-php7.0 \
-    php7.4-cli \
-    php7.4-curl \
-    php7.4-mysql \
-    php7.4-sqlite3 \
-    php7.4-gd \
-    php7.4-xml \
-    php7.4-mcrypt \
-    php7.4-mbstring \
-    php7.4-iconv
+    php \
+    php-fpm \
+    php-json \
+    php-pdo \
+    php-zip \
+    php-pear \
+    php-bcmath \
+    libapache2-mod-php \
+    php-cli \
+    php-curl \
+    php-mysql \
+    php-gd \
+    php-xml \
+    php-mcrypt \
+    php-mbstring \
+    php-iconv
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
