@@ -32,7 +32,10 @@ RUN apt-get install -y \
     php-gd \
     php-xml \
     php-mbstring \
-    php-iconv
+    php-iconv \
+    install nodejs \
+    install npm
+
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -42,7 +45,7 @@ WORKDIR /var/www/html
 
 #RUN composer create-project --prefer-dist laravel/laravel lara_app
 
-RUN composer Install
+RUN composer install
 
 #COPY apache-conf /etc/apache2/apache2.conf
 
