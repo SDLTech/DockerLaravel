@@ -39,15 +39,15 @@ RUN apt-get install -y \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-WORKDIR /var/www/html
-
 RUN chown www-data:www-data /var/www/html
 
-#RUN composer create-project --prefer-dist laravel/laravel lara_app
+WORKDIR /var/www/html
+
+RUN composer create-project --prefer-dist laravel/laravel lara_app
 
 #COPY apache-conf /etc/apache2/apache2.conf
 
-#ENTRYPOINT ["/usr/sbin/apache2", "start"]
+RUN service apache2 start
 
 EXPOSE 80
 
