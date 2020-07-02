@@ -46,7 +46,7 @@ WORKDIR /var/www/html
 
 #RUN composer create-project --prefer-dist laravel/laravel lara_app
 COPY composer.json /var/www/html/composer.json
-COPY composer.json /var/www/html/composer.lock
+COPY composer.lock /var/www/html/composer.lock
 RUN composer install
 RUN npm install
 #COPY apache-conf /etc/apache2/apache2.conf
