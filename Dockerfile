@@ -38,3 +38,12 @@ RUN composer create-project --prefer-dist laravel/laravel lara_app
 
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
+
+ENTRYPOINT ["/usr/sbin/apache2", "-k", "start"]
+
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+
+EXPOSE 80
+CMD apachectl -D FOREGROUND
