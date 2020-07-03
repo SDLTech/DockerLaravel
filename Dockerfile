@@ -48,6 +48,8 @@ WORKDIR /var/www/html
 
 COPY composer.json /var/www/html/composer.json
 COPY composer.lock /var/www/html/composer.lock
+COPY database /var/www/html/database
+
 RUN composer install
 RUN npm install
 
