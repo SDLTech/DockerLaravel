@@ -45,11 +45,8 @@ RUN chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
 
 #RUN composer create-project --prefer-dist laravel/laravel lara_app
-
-COPY composer.json /var/www/html/composer.json
-COPY composer.lock /var/www/html/composer.lock
-COPY database /var/www/html/database
-
+COPY www /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 RUN composer install
 RUN npm install
 
