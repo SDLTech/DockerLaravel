@@ -45,11 +45,14 @@ RUN chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
 
 #RUN composer create-project --prefer-dist laravel/laravel lara_app
+
 COPY composer.json /var/www/html/composer.json
 COPY composer.lock /var/www/html/composer.lock
 RUN composer install
 RUN npm install
-#COPY apache-conf /etc/apache2/apache2.conf
+
+COPY apache-conf /etc/apache2/apache2.conf
+
 #COPY 000-default.conf  /etc/apache2/sites-available/000-default.conf
 
 RUN service apache2 start
