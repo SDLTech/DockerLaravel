@@ -35,27 +35,31 @@ RUN apt-get install -y \
     php-mbstring \
     php-iconv \
     nodejs \
-    npm
+    npm \
+    software-properties-common
 
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN chown -R www-data:www-data /var/www/html
 
-WORKDIR /var/www/html
+RUN mkrir /home/laravel
+RUN chown -R www-data:www-data /home/laravel
+WORKDIR /home/laravel
 
 #RUN composer create-project --prefer-dist laravel/laravel lara_app
-COPY www /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+COPY www /home/laravel
+RUN chown -R www-data:www-data /home/laravel
 RUN composer install
 RUN npm install
 
 COPY apache-conf /etc/apache2/apache2.conf
 
-#COPY 000-default.conf  /etc/apache2/sites-available/000-default.conf
+COPY laravel_project.conf  /etc/apache2/sites-available/laravel_project.conf
 
+RUN a2enmod rewrite
+RUN chown -R www-data:www-data /home/laravel
 RUN service apache2 start
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD apachectl -D FOREGROUND
